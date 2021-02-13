@@ -39,7 +39,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @font-face {
 	font-family: "icomoon";
 	src: url("~assets/fonts/icomoon.eot?ltzux8");
@@ -59,7 +59,7 @@ export default {
 	text-align: center;
 	height: 49px;
 	position: relative;
-	font-size: 14px;
+	font-size: 0.875rem;
 }
 .fonts {
 	margin-top: 3px;
