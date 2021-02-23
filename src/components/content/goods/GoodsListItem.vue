@@ -1,79 +1,83 @@
 <template>
-	<div class="goods-item">
-		<img alt="" :src="goodsItem.show.img" @load="imageLoad"/>
-		<div class="goods-info">
-			<p>{{ goodsItem.title }}</p>
-			<span class="price">{{ goodsItem.price }}</span>
-			<span class="collect">{{ goodsItem.cfav }}</span>
-		</div>
-	</div>
+  <div class="goods-item" @click="goodsClick">
+    <img alt="" :src="goodsItem.show.img" @load="imageLoad" />
+    <div class="goods-info">
+      <p>{{ goodsItem.title }}</p>
+      <span class="price">{{ goodsItem.price }}</span>
+      <span class="collect">{{ goodsItem.cfav }}</span>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-	name: "GoodsListItem",
-	props: {
-		goodsItem: {
-			type: Object,
-			default() {
-				return {};
-			},
-		},
-	},
-	methods:{
-		imageLoad(){
-			// console.log('------');
-			this.$bus.$emit('itemImageLoad')
-		}
-	}
+  name: "GoodsListItem",
+  props: {
+    goodsItem: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+  },
+  methods: {
+    imageLoad() {
+      // console.log('------');
+      this.$bus.$emit("itemImageLoad");
+    },
+    goodsClick() {
+      // console.log(this.goodsItem.iid);
+      this.$router.push("/detail/" + this.goodsItem.iid);
+    },
+  },
 };
 </script>
 
 <style scoped>
 .goods-item {
-	padding-bottom: 40px;
-	width: 48%;
-	position: relative;
+  padding-bottom: 40px;
+  width: 48%;
+  position: relative;
 }
 
 .goods-item img {
-	width: 100%;
-	border-radius: 5px;
+  width: 100%;
+  border-radius: 5px;
 }
 
 .goods-info {
-	font-size: 12px;
-	bottom: 5px;
-	left: 0;
-	right: 0;
-	overflow: hidden;
-	text-align: center;
-	position: absolute;
+  font-size: 12px;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  text-align: center;
+  position: absolute;
 }
 
 .goods-info p {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	margin-bottom: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 3px;
 }
 
 .goods-info .price {
-	color: var(--color-high-text);
-	margin-right: 20px;
+  color: var(--color-high-text);
+  margin-right: 20px;
 }
 
 .goods-info .collect {
-	position: relative;
+  position: relative;
 }
 
 .goods-info .collect::before {
-	content: "";
-	position: absolute;
-	left: -15px;
-	top: -1px;
-	width: 14px;
-	height: 14px;
-	background: url("~assets/img/common/collect.svg") 0 0/14px 14px;
+  content: "";
+  position: absolute;
+  left: -15px;
+  top: -1px;
+  width: 14px;
+  height: 14px;
+  background: url("~assets/img/common/collect.svg") 0 0/14px 14px;
 }
 </style>

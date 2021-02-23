@@ -3,7 +3,7 @@
 		<div
 			class="tab-control-item"
 			v-for="(item, index) in title"
-			@click="tabClick(index)"
+			@click="itemClick(index)"
 			:key="index"
 			:class="{ active: index === currentIndex }"
 		>
@@ -29,7 +29,7 @@ export default {
 		};
 	},
 	methods: {
-		tabClick(index) {
+		itemClick(index) {
 			this.currentIndex = index;
 			this.$emit("tabClick", index);
 		},
