@@ -27,7 +27,7 @@ export default {
   },
   created() {},
   mounted() {
-    console.log(this.topImages);
+    // console.log(this.topImages);
   },
 };
 </script>

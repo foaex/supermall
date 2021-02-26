@@ -34,6 +34,7 @@ export default {
       probeType: this.probeType,
       click: true,
       pullUpLoad: this.pullUpLoad,
+      useTransition: false,
     });
     // 2.监听滚动的位置
     if (this.probeType === 2 || this.probeType === 3) {

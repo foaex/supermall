@@ -19,7 +19,10 @@
         v-for="index in goods.services.length - 1"
         :key="index"
       >
-        <img :src="goods.services[index - 1].icon" />
+        <img
+          :src="goods.services[index - 1].icon"
+          v-if="goods.services[index - 1].icon"
+        />
         <span>{{ goods.services[index - 1].name }}</span>
       </span>
     </div>
@@ -96,7 +99,9 @@ export default {
 .info-service {
   display: flex;
   justify-content: space-between;
-  line-height: 60px;
+  line-height: 40px;
+  flex-wrap: wrap;
+  margin: 10px 0;
 }
 
 .info-service-item img {

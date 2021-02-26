@@ -41,8 +41,8 @@ import Featrue from "./homeChildren/Featrue.vue";
 import TabControl from "components/content/tabControl/TabControl.vue";
 import GoodsList from "components/content/goods/GoodsList.vue";
 import Scroll from "components/common/scroll/Scroll.vue";
-import BackTop from "components/content/backtop/BackTop.vue";
-import { debounce } from "common/util";
+// import { debounce } from "common/util";
+import { itemListenerMixin, backTop } from "common/mixin";
 
 export default {
   name: "Home",
@@ -54,8 +54,8 @@ export default {
     TabControl,
     GoodsList,
     Scroll,
-    BackTop,
   },
+  mixins: [itemListenerMixin, backTop],
   data() {
     return {
       banners: [],
@@ -75,7 +75,6 @@ export default {
         },
       },
       currentType: "pop",
-      isShow: false,
       tabOffsetTop: 0,
       isTabFixed: false,
       saveY: 0,
@@ -101,11 +100,11 @@ export default {
     this.getHomeGoods("sell");
   },
   mounted() {
-    const refresh = debounce(this.$refs.scroll.refresh, 200);
-    this.$bus.$on("itemImageLoad", () => {
-      // console.log('-------');
-      refresh();
-    });
+    // const refresh = debounce(this.$refs.scroll.refresh, 200);
+    // this.$bus.$on("itemImageLoad", () => {
+    //   // console.log('-------');
+    //   refresh();
+    // });
   },
   methods: {
     tabClick(index) {
@@ -123,9 +122,7 @@ export default {
       this.$refs.tabControl1.currentIndex = index;
       this.$refs.tabControl2.currentIndex = index;
     },
-    backClick() {
-      this.$refs.scroll.scrollTo(0, 0);
-    },
+
     contentScroll(position) {
       this.isShow = -position.y > 1000 ? true : false;
       this.isTabFixed = -position.y > this.tabOffsetTop;

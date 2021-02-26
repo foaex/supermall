@@ -58,8 +58,8 @@ export default {
 .back {
   width: 12px;
   height: 12px;
-  border-bottom: 1px solid #bbb;
-  border-left: 1px solid #bbb;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
   transform: rotate(45deg);
   position: absolute;
   top: 15px;
