@@ -29,10 +29,10 @@
     </scroll>
     <detail-bottom @addCart="addToCart"></detail-bottom>
     <back-top @click.native="backClick" v-show="isShow" />
-    <detail-style
+    <!-- <detail-style
       :skuInfo="styleInfo"
       :shopingInfo="shopingInfo"
-    ></detail-style>
+    ></detail-style> -->
   </div>
 </template>
 
@@ -56,7 +56,8 @@ import GoodsList from "components/content/goods/GoodsList.vue";
 import { itemListenerMixin, backTop } from "common/mixin";
 import { debounce } from "common/util";
 import DetailBottom from "./childComps/DetailBottom.vue";
-import DetailStyle from "./childComps/DetailStyle.vue";
+// import DetailStyle from "./childComps/DetailStyle.vue";
+import { mapActions } from "vuex";
 export default {
   name: "Detail",
   data() {
@@ -72,8 +73,8 @@ export default {
       themeTopYs: [],
       getTopY: null,
       buyStyle: false,
-      styleInfo: {},
-      shopingInfo: false,
+      // styleInfo: {},
+      // shopingInfo: false,
     };
   },
   mixins: [itemListenerMixin, backTop],
@@ -88,7 +89,7 @@ export default {
     Comment,
     GoodsList,
     DetailBottom,
-    DetailStyle,
+    // DetailStyle,
   },
   created() {
     // console.log(this.$route);
@@ -129,10 +130,7 @@ export default {
         this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
         this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
         this.themeTopYs.push(Number.MAX_VALUE);
-        // console.log(this.themeTopYs);
       }, 100);
-      this.styleInfo = data.skuInfo;
-      console.log(this.styleInfo);
     });
     // 求情推荐数据
     getRecommend().then((res) => {
@@ -142,12 +140,12 @@ export default {
   },
   mounted() {},
   methods: {
+    ...mapActions(["addCart"]),
     imageLoad() {
       this.$refs.scroll.refresh();
       this.getTopY();
     },
     titleClick(index) {
-      // console.log(index);
       this.$refs.scroll.scrollTo(0, -this.themeTopYs[index], 200);
     },
     contentScroll(position) {
@@ -155,16 +153,6 @@ export default {
       const positionY = -position.y;
       let length = this.themeTopYs.length;
       for (let i = 0; i < length - 1; i++) {
-        // if ((i < length - 1 && positionY > this.this.themeTopYs[i] && positionY >
-        //   this.themeTopYs[i + 1]) || (i === length - 1 && positionY > this.themeTopYs[i])) {
-        //   console.log(i);
-        // }
-        // if (this.currentIndex !== i && ((i < length - 1 && positionY >= this.themeTopYs[i] && positionY <
-        //   this.themeTopYs[i + 1]) || (i === length - 1 && positionY >= this.themeTopYs[i]))) {
-        //   this.currentIndex = i;
-        //   console.log(this.currentIndex);
-        //   this.$refs.nav.currentIndex=this.currentIndex
-        // }
         //优化
         if (
           this.currentIndex !== i &&
@@ -180,17 +168,18 @@ export default {
     },
     // 选择商品样式
     addToCart() {
-      // console.log("===========");
-      // this.buyStyle = true;
-      // console.log(this.skuInfo);
-      this.shopingInfo = true;
-      //  获取信息
+      // 自己添加的弹出窗
+      // this.shopingInfo = true;
+      //  1.获取购物车要展示的信息
       const product = {};
       product.image = this.topImages[0];
       product.title = this.goods.title;
       product.desc = this.goods.desc;
-      product.price = this.goods.realPrice;
+      product.price = parseInt(this.goods.realPrice).toFixed(2);
       product.iid = this.iid;
+      this.addCart(product).then((res) => {
+        console.log(res);
+      });
     },
   },
 };
