@@ -10,7 +10,7 @@
       <span>全选</span>
     </div>
     <div class="total">合计：{{ totalPrice }}</div>
-    <div class="calculate">去结算:{{ number }}</div>
+    <div class="calculate" @click="calcClick">去结算:{{ checkLength }}</div>
   </div>
 </template>
 
@@ -18,21 +18,7 @@
 import CheckButton from "components/content/checkButton/CheckButton.vue";
 export default {
   name: "BottomBar",
-  methods: {
-    allClick() {
-      if (this.isSelectAll) {
-        this.$store.getters.cartList.forEach((item) => {
-          item.checked = false;
-        });
-      } else {
-        this.$store.getters.cartList.forEach((item) => {
-          item.checked = true;
-        });
-      }
-      // console.log(this.$store.getters.cartList);
-      // console.log(this.isSelectAll);
-    },
-  },
+
   components: { CheckButton },
   computed: {
     totalPrice() {
@@ -49,7 +35,7 @@ export default {
           .toFixed(2)
       );
     },
-    number() {
+    checkLength() {
       return this.$store.getters.cartList.filter((item) => {
         return item.checked;
       }).length;
@@ -64,6 +50,35 @@ export default {
         }
       }
       return true;
+    },
+  },
+  methods: {
+    allClick() {
+      if (this.isSelectAll) {
+        this.$store.getters.cartList.forEach((item) => {
+          item.checked = false;
+        });
+      } else {
+        this.$store.getters.cartList.forEach((item) => {
+          item.checked = true;
+        });
+      }
+      // console.log(this.$store.getters.cartList);
+      // console.log(this.isSelectAll);
+    },
+    calcClick() {
+      // if () {
+      //   this.$toast.show("请选择商品", 500);
+      // }
+      if (
+        this.$store.getters.cartList.filter((item) => {
+          return item.checked;
+        }).length == 0
+      ) {
+        this.$toast.show("请选择商品", 600);
+      } else {
+        this.$toast.show("前往支付", 200);
+      }
     },
   },
 };

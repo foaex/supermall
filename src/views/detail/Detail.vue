@@ -178,7 +178,8 @@ export default {
       product.price = parseInt(this.goods.realPrice).toFixed(2);
       product.iid = this.iid;
       this.addCart(product).then((res) => {
-        console.log(res);
+        // console.log(res);
+        this.$toast.show(res, 1500);
       });
     },
   },
