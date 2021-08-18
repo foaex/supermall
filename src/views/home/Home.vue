@@ -139,7 +139,7 @@ export default {
       // 函数执行过后，所有的数据都会被清除，所以要把数据保存起来
       getHomeMultidata().then((res) => {
         this.banners = res.data.banner.list;
-        // console.log(this.banners);
+        // console.log(res);
         this.recommends = res.data.recommend.list;
       });
     },

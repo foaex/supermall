@@ -1,7 +1,7 @@
 <template>
   <div class="tab-bar-item" :style="activeStyle" @click="itemClick">
     <slot name="item-icon"></slot>
-    <slot name="item-text"></slot>
+    <!-- <slot name="item-text"></slot> -->
   </div>
 </template>
 

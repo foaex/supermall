@@ -14,6 +14,7 @@ export function request (config) {
   }, err => {
     // 拦截失败输出
     console.log(err)
+   
   })
 
   // 2.2 响应拦截

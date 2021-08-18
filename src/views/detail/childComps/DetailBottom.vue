@@ -37,7 +37,7 @@ export default {
 
 <style scoped>
 .bottom-bar {
-  height: 49px;
+  height: 56px;
   position: fixed;
   background-color: #fff;
   left: 0;
@@ -49,6 +49,7 @@ export default {
 }
 
 .bar-item {
+  height: 100%;
   flex: 1;
   display: flex;
 }

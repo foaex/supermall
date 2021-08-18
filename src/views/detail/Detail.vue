@@ -187,14 +187,14 @@ export default {
 </script>
 
 <style scoped >
-#detail {
+.detail {
   position: relative;
   height: 100vh;
 }
 .content {
   position: absolute;
   top: 44px;
-  bottom: 49px;
+  bottom: 56px;
   left: 0;
   right: 0;
   overflow: hidden;

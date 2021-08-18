@@ -14,7 +14,7 @@ export default {
 .back-top {
   position: fixed;
   right: 8px;
-  bottom: 55px;
+  bottom: 60px;
   /* z-index: 100; */
   background-color: #eee;
   border-radius: 50%;
