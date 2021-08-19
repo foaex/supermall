@@ -41,7 +41,7 @@ const routes = [{
 
 const router = new VueRouter({
 	routes,
-	mode: 'history'
+	// mode: 'history'
 })
 // 下面这三行代码是解决路由重复报错的
 const originalPush = VueRouter.prototype.push

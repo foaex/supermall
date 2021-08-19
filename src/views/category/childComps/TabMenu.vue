@@ -51,6 +51,7 @@ export default {
   line-height: 45px;
   text-align: center;
   font-size: 14px;
+  border-left: 3px solid transparent;
 }
 
 .menu-list-item.active {
