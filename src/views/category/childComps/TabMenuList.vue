@@ -1,7 +1,7 @@
 <template>
   <div class="container" v-if="subcategories.list">
     <!-- 每一个数据项 -->
-    <div class="container_item"  v-for="(item,index) in subcategories.list" :key="index">
+    <a class="container_item"  v-for="(item,index) in subcategories.list" :key="index" :href="item.link">
       <!-- 照片 -->
       <div class="container_item_img">
         <img :src="item.image">
@@ -10,7 +10,7 @@
       <div class="container_item_text">
         <span>{{item.title}}</span>
       </div>
-    </div>
+    </a>
   </div>
 </template>
 
